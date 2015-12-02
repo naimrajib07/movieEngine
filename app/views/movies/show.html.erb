@@ -11,7 +11,7 @@
   <dt><strong><%= model_class.human_attribute_name(:director) %>:</strong></dt>
   <dd><%= @movie.director %></dd>
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @movie.user_id %></dd>
+  <dd><%= @movie.user_email %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

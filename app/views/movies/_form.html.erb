@@ -31,6 +31,13 @@
       <%= f.error_span(:description) %>
     </div>
     <div class="form-group">
+      <%= f.label :genre, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :genre, :class => 'form-control' %>
+      </div>
+      <%= f.error_span(:genre) %>
+    </div>
+    <div class="form-group">
       <%= f.label :director, :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
         <%= f.text_field :director, :class => 'form-control' %>

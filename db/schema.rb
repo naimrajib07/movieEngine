@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151129221825) do
+ActiveRecord::Schema.define(version: 20151201223258) do
 
   create_table "galleries", force: true do |t|
     t.integer  "movie_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20151129221825) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "genre"
   end
 
   add_index "movies", ["user_id"], name: "index_movies_on_user_id"

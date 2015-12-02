@@ -1,10 +1,11 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @movies = Movie.all
+    @movies = Movie.includes(:gallery => :pictures).order(:updated_at).page params[:page]
     respond_with(@movies)
   end
 
@@ -24,6 +25,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+    @movie.user = current_user
     @movie.save
     respond_with(@movie)
   end
@@ -44,7 +46,7 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params.require(:movie).permit(:name, :description, :director, :user_id,
+    params.require(:movie).permit(:name, :description, :director, :user_id, :genre,
                                   gallery_attributes: [:id, :_destroy,
                                                        pictures_attributes: [:id, :avatar, :_destroy]])
   end

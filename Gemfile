@@ -32,6 +32,7 @@ gem 'angularjs-rails'
 gem 'simple_form'
 gem 'paperclip', '~> 4.3'
 gem 'nested_form'
+gem 'kaminari'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

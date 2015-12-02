@@ -1,42 +1,21 @@
-<%- model_class = Movie -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:director) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= link_to movie.id, movie_path(movie) %></td>
-        <td><%= movie.name %></td>
-        <td><%= movie.description %></td>
-        <td><%= movie.director %></td>
-        <td><%= movie.user_id %></td>
-        <td><%=l movie.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_movie_path(movie), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      movie_path(movie),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_movie_path,
             :class => 'btn btn-primary' %>
+<div class="movies-wrapper">
+  <% @movies.each do |movie| %>
+      <div class="movie-container">
+        <%= image_tag movie_cover_picture(movie.gallery), height: 331, width: 228 %>
+        <div class="movie-details">
+          <div class="movie-name">Name: <%= movie.name %></div>
+          <div class="movie-genre">Genre: <%= movie.genre %></div>
+          <div class="movie-director">Director: <%= movie.director %></div>
+          <div class="movie-description">Description: <%= movie.description %></div>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_movie_path(movie), :class => 'btn btn-default btn-xs movie-edit' if movie_creator?(movie) %>
+          <%= link_to t('.gallery', :default => t("helpers.links.gallery")),
+                      gallery_path(movie.gallery.id), :class => 'btn btn-default btn-xs movie-gallery' %>
+        </div>
+      </div>
+  <% end %>
+  <%= paginate @movies %>
+</div>
