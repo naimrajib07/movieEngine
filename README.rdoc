@@ -3,26 +3,12 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+Run the following command:
 
-* Ruby version
+* Run Rake DB Create Command
 
-* System dependencies
+* Rake DB Migration
 
-* Configuration
+* Rake DB Seed
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Seed User Email: user_1@email.com And Password: 12345678
